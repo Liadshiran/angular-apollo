@@ -1,4 +1,4 @@
-import { Component, OnInit, Query } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs/Observable'
 import { map } from 'rxjs/operators'
@@ -17,25 +17,24 @@ export class ListComponent implements OnInit {
   constructor(private apollo: Apollo) { }
 
   ngOnInit() {
-    //TODO fix this not compiling:
-    // this.courses = this.apollo.watchQuery<Query>({
-    //   query: gql`
-    //     query allCourses {
-    //       allCourses {
-    //         id
-    //         title
-    //         author
-    //         description
-    //         topic
-    //         url
-    //       }
-    //     }
-    //   `
-    // })
-    //   .valueChanges
-    //   .pipe(
-    //     map(result => result.data.allCourses) 
-    //   );
+    this.courses = this.apollo.watchQuery<Query>({
+      query: gql`
+        query allCourses {
+          allCourses {
+            id
+            title
+            author
+            description
+            topic
+            url
+          }
+        }
+      `
+    })
+      .valueChanges
+      .pipe(
+        map(result => result.data.allCourses) 
+      );
   }
 
 }

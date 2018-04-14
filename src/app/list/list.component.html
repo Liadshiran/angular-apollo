@@ -1,3 +1,10 @@
-<p>
-  list works!
-</p>
+<div *ngFor="let course of courses | async"> <!-- courses is a class member and is Observeable, which means it updates asynchronically from the server !-->
+  <div class="card" style="width: 100%; margin-top: 10px">
+    <div class="card-body">
+      <h5 class="card-title">{{course.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted"> by {{course.author}}</h6>
+      <p class="card-text">{{course.description}}</p>
+      <a href="{{course-url}}" class="card-link">Go to Course</a>
+    </div>
+  </div>
+</div>
